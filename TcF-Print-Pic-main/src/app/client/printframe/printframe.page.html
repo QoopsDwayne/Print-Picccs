@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back" color="primary" vertical="end" slot="start" style="margin-left: 10px;" [routerLink]="['./../tabs/profilez']"></ion-icon>
+    <ion-title color="primary">Choose Picture To Frame</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-box">
+
+    <ion-card *ngIf="userPics.length === 0">
+      <ion-card-header class="align">
+        <ion-card-title color="primary">No Picccs Yet</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="align">
+        <div>
+          <img src="./../../assets/images/no imgae.png" >
+        </div>
+      </ion-card-content>
+
+      <div class="align">
+        <ion-button [routerLink]="['/uploadpic']">Upload Picccz?</ion-button>
+      </div><br>
+    </ion-card>
+
+    <ion-card *ngFor="let pic of userPics; let i = index" [attr.data-index]="i"> 
+      <ion-card-header>
+        <ion-card-subtitle class="align" color="primary">{{ pic.date }}</ion-card-subtitle>
+        <ion-card-title class="align" color="primary">{{ pic.comment }}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content class="align" color="primary">
+        <img src="{{ pic.pic }}"><br>
+        <!-- {{ pic.comment }}<br> -->
+      </ion-card-content>
+      <div class="align">
+        <ion-button expand="outline" (click)="addToPrintPicArray(pic.pidid)">
+        <ion-icon name="add" color="primary" ></ion-icon>
+      </ion-button>
+      </div><br>
+    </ion-card>
+
+    <ion-infinite-scroll therehold='100px' (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content 
+        color="primary"
+        loadingSpinner="bubbles" 
+        loadingText="Loading more Frames...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</div>
+
+</ion-content>

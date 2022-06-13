@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-icon name="arrow-back" (click)="goToFeedWall()" vertical="end" slot="start" style="margin-left: 10px;"></ion-icon>
+    <ion-title *ngFor="let pic of post">{{ pic.name }} {{ pic.surname }}'s Post</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding">
+
+  <ion-card *ngFor="let pic of post" style="align-content: center;">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="{{ pic.image }}" tappable (click)="openPreview(pic.image)">
+      </ion-avatar>
+      <ion-label color="primary">
+        {{ pic.name }} {{ pic.surname }}
+        <p class="p">{{ pic.date }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-card-content class="post-list-content" class="align">
+      <img src="{{ pic.pic }}" tappable (click)="openPreview(pic.pic)"><br>
+      <ion-card-title class="align" color="primary">"{{ pic.comment }}"</ion-card-title>
+    </ion-card-content>
+  </ion-card>
+ 
+  <ion-item>
+    <ion-label color="primary">
+      <p class="p">Feed Comments</p>
+    </ion-label>
+  </ion-item>
+  <ion-grid>
+    <ion-row *ngFor="let message of messages | async">
+      <ion-col size="9" class="message"
+        [offset]="message.myMsg ? 3 : 0"
+        [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
+        <b>{{ message.name }} {{ message.surname }}</b><br>
+        <span>{{ message.msg }}
+        </span>
+        <div class="time ion-text-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+</ion-content>
+ 
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg" >
+        </ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''"
+          class="msg-btn" (click)="sendMessage()">
+          <ion-icon name="send" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

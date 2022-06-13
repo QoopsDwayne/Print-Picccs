@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back" color="primary" vertical="end" slot="start" style="margin-left: 10px;" [routerLink]="['/home']"></ion-icon>
+    <ion-title color="primary">Order History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-box">
+    <ion-card *ngIf="userPics.length === 0">
+      <ion-card-header class="align">
+        <ion-card-title color="primary">No Orders Yet</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="align">
+        <div>
+          <img src="./../../assets/images/order.jpg" >
+        </div>
+      </ion-card-content>
+
+      <!-- <div class="align">
+        <ion-button [routerLink]="['/uploadpic']">Upload Picccz?</ion-button>
+      </div><br> -->
+      
+    </ion-card>
+
+    <!-- <ion-item *ngIf="!emptyCard">
+      msg ya thabo
+    </ion-item> -->
+
+    <!-- <div *ngIf="!userPics"><span>No Reminders Set Yet"</span></div> -->
+
+    <ion-card *ngFor="let pic of userPics; let i = index">
+      <ion-card-header class="align">
+        <ion-card-subtitle color="primary">{{ pic.date }}</ion-card-subtitle>
+        <ion-card-title color="primary">{{ pic.OrderStatus }}</ion-card-title>
+        <ion-card-subtitle color="primary">Price: {{ pic.price }}</ion-card-subtitle>
+        <ion-card-subtitle color="primary">No of Pics: {{ pic.picNumber }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content *ngFor="let picz of pic.Piccs" class="align">
+      <ion-avatar slot="start">
+        <img [src]= "picz.pic">
+      </ion-avatar>
+      </ion-card-content>
+
+      <ion-card>
+        <ion-card-header class="align">
+          <!-- <ion-card-title>Order Progress</ion-card-title> -->
+          <ion-card-subtitle color="primary">Sent to this Adrress</ion-card-subtitle>
+          <ion-card-subtitle color="primary">{{ pic.address }}</ion-card-subtitle>
+        </ion-card-header>
+  
+      </ion-card>
+
+    </ion-card>
+
+  </div>
+</ion-content>

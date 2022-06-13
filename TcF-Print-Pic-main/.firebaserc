@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "printpics-61db4",
+    "printpics": "printpics-61db4"
+  },
+  "targets": {
+    "tcfprintpics": {
+      "hosting": {
+        "app": [
+          "tcfprintpics"
+        ]
+      }
+    }
+  }
+}

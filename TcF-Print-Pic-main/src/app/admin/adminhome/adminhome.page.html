@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="primary">
+      Admin Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div id="graph-overlay">
+    <div class="dismisser-block">
+      
+    </div>
+    <div class="resized-chart" id="one">
+      <canvas class="myCanvas" #barChartbig></canvas>
+    </div>
+    <div class="resized-chart" id="two">
+      <canvas class="myCanvas" #barChart1big></canvas>
+    </div>
+    <div class="resized-chart" id="three">
+      <canvas class="myCanvas" #barChart2big></canvas>
+    </div>
+  </div>
+  <main class="small-screen-size-not-supported"></main>
+
+  <div class="container">
+    <div padding class="alltime">
+      <!-- box 1 -->
+      <div class="stats" style="background: #13bb1b;">
+        <div class="first">
+       <img src="../../assets/images/tcfpicicon.png"> 
+      
+        </div>
+        <div class="second" padding>
+         <h2 class="h2">Finished Order's</h2>
+         <!-- <p class="p">Shop's<span>.</span></p> -->
+         <p class="p">{{ FinPrintedOrdersNo }}<span>.</span></p>
+        </div>
+       </div>
+       <!-- box2 -->
+       <div class="stats" style="background: #D12C6F;">
+        <div class="first">
+       <img src="../../assets/images/tcfpicicon.png" height="70%"> 
+      
+        </div>
+        <div class="second" padding>
+         <h2 class="h2">Printed Pic's</h2>
+         <!-- <p class="p">Active Bookings<span>.</span></p> -->
+         <p class="p">{{ PrintedOrdersNo }}<span>.</span></p>
+        </div>
+       </div>
+          <!-- box 3 -->
+          <div class="stats" style="background: #13BBBB;">
+            <div class="first">
+           <img src="../../assets/images/tcfpicicon.png" > 
+          
+            </div>
+            <div class="second" padding>
+             <h2 class="h2">Sent Pic's</h2>
+             <!-- <p class="p">Reports<span>.</span></p> -->
+             <p class="p">{{ SentOrdersNo }}<span>.</span></p>
+            </div>
+           </div>
+    </div><!-- end of all time div -->
+
+    <div padding class="alltime">
+      <!-- box 1 -->
+      <div class="stats" style="background: #c50a0a;">
+        <div class="first">
+       <img src="../../assets/images/tcfpicicon.png"> 
+      
+        </div>
+        <div class="second" padding>
+         <h2 class="h2">Frame Orders</h2>
+         <!-- <p class="p">Shop's<span>.</span></p> -->
+         <p class="p">{{ FramePrintedOrdersNo }}<span>.</span></p>
+        </div>
+       </div>
+       <!-- box2 -->
+       <div class="stats" style="background: #4a2cd1;">
+        <div class="first">
+       <img src="../../assets/images/tcfpicicon.png" height="70%"> 
+      
+        </div>
+        <div class="second" padding>
+         <h2 class="h2">Art Orders</h2>
+         <!-- <p class="p">Active Bookings<span>.</span></p> -->
+         <p class="p">{{ ArtPrintedOrdersNo }}<span>.</span></p>
+        </div>
+       </div>
+          <!-- box 3 -->
+          <div class="stats" style="background: #C5A60A;">
+            <div class="first">
+           <img src="../../assets/images/tcfpicicon.png" > 
+          
+            </div>
+            <div class="second" padding>
+             <h2 class="h2">Orders</h2>
+             <!-- <p class="p">Reports<span>.</span></p> -->
+             <p class="p">{{ OrdersNo }}<span>.</span></p>
+            </div>
+           </div>
+    </div><!-- end of all time div -->
+
+          <div class="parentDiv">
+            <div class="history">
+              <div class="h2">All Available Order's</div>
+              
+              <div class="history-labels">  
+                <div class="userId">Date</div>
+                <div class="name">Pic No</div>
+                <div class="regNo">Price</div>
+                <div class="icon">Status</div>
+               </div><!-- end of history-labels -->
+               <div class="scrolling" *ngFor="let order of Orders">
+              <div class="itemList">
+                <!-- <div *ngIf="Orders.length > 0"> -->
+                  <div class="userId">{{ order.date }}</div>
+                <div class="name" >{{ order.picNumber }}</div>
+                <div class="regNo" >{{ order.price }}</div>
+                <!-- <div class="regNo">{{ order.OrderStatus }}</div> -->
+                <div class="icon"><ion-button [routerLink]="['/adminorderview', order.clientID]" fill="clear"  slot="icon-only"><ion-icon mode="ios" name="eye"></ion-icon></ion-button>
+                </div>
+                <!-- </div> -->
+                 </div>
+              </div>
+            </div><!-- end of history -->
+          </div>
+        
+    </div>
+
+  <!-- </div> -->
+
+</ion-content>

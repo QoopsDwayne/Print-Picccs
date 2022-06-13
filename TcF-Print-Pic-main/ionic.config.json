@@ -1,0 +1,7 @@
+{
+  "name": "tcfprint",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

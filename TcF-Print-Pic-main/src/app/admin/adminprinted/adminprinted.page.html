@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="primary">
+      Admin Printed Piccs
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding class="alltime">
+    <!-- box 1 -->
+    <div class="stats" style="background: #C5A60A;">
+      <div class="first">
+     <img src="../../assets/images/tcfpicicon.png"> 
+    
+      </div>
+      <div class="second" padding>
+       <h2 class="h2">Order's</h2>
+       <!-- <p class="p">Shop's<span>.</span></p> -->
+       <p class="p">{{ OrdersNo }}<span>.</span></p>
+      </div>
+     </div>
+     <!-- box2 -->
+     <div class="stats" style="background: #D12C6F;">
+      <div class="first">
+     <img src="../../assets/images/tcfpicicon.png" height="70%"> 
+    
+      </div>
+      <div class="second" padding>
+       <h2 class="h2">Printed Pic's</h2>
+       <!-- <p class="p">Active Bookings<span>.</span></p> -->
+       <p class="p">{{ PrintedOrdersNo }}<span>.</span></p>
+      </div>
+     </div>
+        <!-- box 3 -->
+        <div class="stats" style="background: #13BBBB;">
+          <div class="first">
+         <img src="../../assets/images/tcfpicicon.png" > 
+        
+          </div>
+          <div class="second" padding>
+           <h2 class="h2">Sent Order's</h2>
+           <!-- <p class="p">Reports<span>.</span></p> -->
+           <p class="p">{{ SentOrdersNo }}<span>.</span></p>
+          </div>
+         </div>
+        </div><!-- end of all time div -->
+
+        <div class="parentDiv">
+          <div class="history" >
+            <h4>Printed Order's</h4>
+           
+            <div class="history-labels">  
+              <div class="userId">Date</div>
+              <div class="name">Pic No</div>
+              <div class="regNo">Price</div>
+              <div class="icon"></div>
+             </div><!-- end of history-labels -->
+        <div class="scrolling" *ngFor="let order of PrintedOrders">
+            <div class="itemList" >
+              <div class="userId">{{ order.date }}</div>
+              <div class="name" >{{ order.picNumber }}</div>
+              <div class="name" >{{ order.price }}</div>
+              <!-- <div class="regNo">{{ order.OrderStatus }}</div> -->
+              <div class="icon"><ion-button [routerLink]="['/adminviewprinted', order.clientID]" fill="clear"  slot="icon-only"><ion-icon mode="ios" name="eye"></ion-icon></ion-button>
+              </div>
+               </div>
+            </div>
+          </div><!-- end of history -->
+        </div>
+
+<!-- </div> -->
+
+</ion-content>

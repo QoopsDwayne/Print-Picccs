@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-buttons (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Checkout {{ name }} {{ surname }}</ion-title>
+    <!-- <ion=label style="color: forestgreen;">R{{Total}}</ion-label> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="directionForm">
+    <ion-item [formGroup]="RegisterForm">
+      <input class="input" #autoCompleteInput formControlName="placeName" />
+    </ion-item>
+  </form>
+  <ion-item>
+    <div #mapElement class="map"></div>
+  </ion-item>
+
+  <div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name"  class="title"></span><br>
+    <span id="place-address"></span>
+  </div>
+
+  <ion-item>
+    <ion-label color="primary" position="floating">Sub Total</ion-label>
+    <p class="p">R{{ TotalPrice }}</p>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" position="floating">Dilivery Price</ion-label>
+    <p class="p">R{{ DiliveryPrice }}</p>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" position="floating">Total Price</ion-label>
+    <p class="p">R{{ Total }}</p>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="success">
+    <ion-button expand="full" (click)="Checkfunds()" [disabled]="!RegisterForm.valid" fill="clear" color="light">
+      Place Order
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

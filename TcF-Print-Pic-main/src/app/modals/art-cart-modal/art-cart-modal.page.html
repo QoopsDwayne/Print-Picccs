@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-buttons (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Art Cart Modal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let p of product">
+      <p slot="start" style="color: #4c8fa3;">
+        {{ p.count }}
+      </p>
+      <ion-label color="primary">
+        {{ p.comment }}
+      </ion-label>
+
+      <ion-avatar slot="end">
+        <ion-img [src]="p.pic"></ion-img>
+      </ion-avatar>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-title>Sub Amount R{{ PayingPrice }}</ion-title>
+    <ion-item *ngFor="let p of product">
+      <p slot="start" style="color: #4c8fa3;">
+        {{ p.comment }}
+      </p>
+      <ion-label color="primary">
+        R{{ p.price }}
+      </ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-footer>
+  <ion-toolbar color="success">
+    <ion-button expand="full" (click)="checkout()" fill="clear" color="light">
+      Checkout
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

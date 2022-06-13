@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button> Manage Frames here
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="mask" *ngIf="isUser === true">  
+    <div class="the-dismiss" (click)="hideUser()">
+      <ion-icon id="edit-icon2" src="../../assets/images/User_Avatar.png" alt=""></ion-icon>
+    </div>
+    <div class="profile-info" *ngIf="isProfile === true">
+      <div class="three-circles">
+        <div id="color-one"></div>
+        <div id="color-two"></div>
+        <div id="color-three"></div>
+      </div>
+      <div class="profile-div">
+        <div class="circle-picture">
+          <img *ngIf="!frameImage" src="../../assets/images/tcfpicicon.png" alt=""> 
+          <img  *ngIf="frameImage" src="{{frameImage}}" alt="">
+        </div>
+      </div>
+      <div align="center">
+        <label for="disapear" align="center">
+          <ion-icon color="primary" slot="end" name="camera">
+            <input id="disapear" class="image-upload"  type="file"  accept="image/*" (change)="changeListener2($event)" align="center">
+          </ion-icon>
+        </label>
+      </div><br>
+      <div align="center">
+        <ion-progress-bar value="{{ uploadingprogress/100 }}"></ion-progress-bar>
+      </div><br>
+      <div *ngIf="!registerForm">
+      <div class="the-info">
+        <p><b>{{ frameName }}</b></p>          
+      </div>
+      <div class="user-phone">
+        <p>R{{ framePrice }}</p>
+      </div>
+      <div class="user-role">
+        <p><b>{{ frameSize }}</b></p>
+      </div>
+
+      <ion-fab>
+        <ion-fab-button id="the-fab" (click)="showRegisterForm()" ><ion-icon name="add"></ion-icon></ion-fab-button>
+      </ion-fab>
+
+      <div class="delete">
+        <ion-icon name="trash" (click)='deleteuser(frameid)'></ion-icon>
+      </div>
+    </div>
+      <!-- end of user-info pop-over -->
+
+    </div>
+
+    <!-- end of add-user pop-over -->
+  </div>
+  
+    <!-- End of View-user0-profile Pop-over -->
+    <!-- <div class="background-Logo">
+      <img src="../../assets/images/tcficonAvatar.png" alt="">
+    </div> -->
+
+  <div class="cont-container" >
+
+    <div padding class="left" >
+      <div class="Searhcer">
+        <div class="results">
+          <!-- <div class='count' *ngIf="frameArray.length > 0"> -->
+          </div>
+        </div>
+        <!-- <ion-searchbar name="search" placeholder="Search by Card No" (ionInput)="getItems($event)"></ion-searchbar> -->
+      <!-- </div> -->
+
+      <div padding class="profile" *ngFor="let myprofiles  of frameArray; let z = index" (click)='AddUser(myprofiles.frameid)' (click)="showUser()">
+        <div class="names">
+           
+          <div *ngIf="frameArray.length > 0">
+              <img class="image" *ngIf="!myprofiles.frameimage" src="../../assets/images/User_Avatar.png" alt=""> 
+              <img class="image" *ngIf="myprofiles.frameimage" src="{{myprofiles.frameimage}}" alt="">
+            <b>
+            <p>{{ myprofiles.framename }}</p> 
+            <p>{{ myprofiles.frameprice }}</p>
+            <p>{{ myprofiles.framesize }}</p>
+            </b>
+          </div>
+
+          <div *ngIf="frameArray.length == 0">
+              <img class="image" *ngIf="!myprofiles.frameimage" src="../../assets/images/User_Avatar.png" alt=""> 
+              <img class="image" *ngIf="myprofiles.frameimage" src="{{myprofiles.frameimage}}" alt="">
+
+            <p>{{ myprofiles.framename }}</p> 
+            <p>{{ myprofiles.frameprice }}</p>
+            <p>{{ myprofiles.framesize }}</p>
+          </div>
+
+        </div>
+        </div>
+
+    </div>
+
+    <div class="right" *ngIf="!registerForm" >
+      <div class="pic" padding >
+     <ion-avatar>
+      <img *ngIf="!frameImage2" src="../../assets/images/User_Avatar.png" alt=""> 
+      <img  *ngIf="frameImage2" src="{{frameImage2}}" tappable (click)="openPreview(frameImage2)" alt="">
+      </ion-avatar>
+      </div>
+      <p id="borderb"></p>
+      <div padding class="info" >
+        <h4>{{ frameName2 }}</h4>
+        <h4>R{{ frameSize2 }}</h4>
+        <h4>{{ framePrice2 }}</h4>
+        
+        <!-- <h4>Account Blocked : {{ suspendStatus }}</h4> -->
+        
+        <ion-segment value="no">
+          <ion-segment-button value="no">
+            <ion-label>No</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="yes">
+            <ion-label>Yes</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        <button (click)='deleteuser(frameid2)'>delete Art</button>
+
+        <ion-fab>
+          <ion-fab-button  (click)="showRegisterForm()" ><ion-icon name="add"></ion-icon></ion-fab-button>
+        </ion-fab>
+
+      </div>
+      </div>
+
+      <div padding class="registerform"  class="right" *ngIf="registerForm" >
+        <ion-button class="close"  fill="clear" (click)="showRegisterForm()" slot="icon-only"><ion-icon name="close-circle"></ion-icon></ion-button>
+    
+        <h1>Add new Frame</h1>
+        <ion-avatar>
+          <img *ngIf="!image" src="../../assets/images/User_Avatar.png" alt=""> 
+          <img  *ngIf="image" src="{{image}}" alt="">
+          </ion-avatar>
+        <div align="center">
+          <label for="disapear" align="center">
+            <ion-icon color="primary" slot="end" name="camera">
+              <input id="disapear" class="image-upload"  type="file"  accept="image/*" (change)="changeListener2($event)" align="center">
+            </ion-icon>
+          </label>
+        </div><br>
+
+        <input class="inputs" type="text" placeholder="Enter Frame Name" [(ngModel)]="name" id="myInput" value="Enter Art Name" >
+
+        <input class="inputs" placeholder="Enter Frame Size" [(ngModel)]="size" type="text" id="myInput" value="Enter Art Size" > 
+
+        <input class="inputs" placeholder="Enter Frame Price" [(ngModel)]="price" type="text" id="myInput" value="Enter Art Price" > 
+
+
+       <button ion-button type="reset" onclick="document.getElementById('myInput').value =''" (click)="saveNewArt()" >Add Frame</button>
+       
+         <!-- [ngModelOptions]="{standalone: true}" -->
+
+      </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back" color="primary" vertical="end" slot="start" style="margin-left: 10px;" [routerLink]="['./../tabs/profilez']"></ion-icon>
+    <ion-title color="primary">Choose Art</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    
+    <div class="login-box">
+
+      <ion-card *ngIf="ArtArray.length === 0" style="align-content: center;">
+        <ion-item lines="none">
+          <!-- <ion-avatar slot="start">
+            <ion-skeleton-text animated style="width: 50px;height: 50px;border-radius: 50px;"></ion-skeleton-text>
+          </ion-avatar> -->
+          <ion-label color="primary">
+            <ion-skeleton-text animated style="width:100px; border-radius: 8px;"></ion-skeleton-text><br>
+            <ion-skeleton-text animated style="width:150px; border-radius: 8px;"></ion-skeleton-text>
+          </ion-label>
+        </ion-item>
+    
+        <ion-card-content class="post-list-content">
+          <ion-skeleton-text animated style="width: 250px;height: 400px;border-radius: 8px;"></ion-skeleton-text><br>
+          <ion-skeleton-text animated style="width:200px; border-radius: 8px;"></ion-skeleton-text><br>
+          <ion-skeleton-text animated style="width:100px; border-radius: 8px;"></ion-skeleton-text>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngFor="let pic of ArtArray; let i = index" class="align"> 
+        <ion-card-header>
+          <ion-card-subtitle color="primary" class="align">{{ pic.artname }}</ion-card-subtitle>
+          <ion-card-title color="primary" class="align">{{ pic.artsize }}</ion-card-title>
+          <!-- <ion-card-title color="primary" class="align">{{ pic.frameprice }}</ion-card-title> -->
+        </ion-card-header>
+      
+        <ion-card-content class="align" color="primary">
+          <img src="{{ pic.artimage }}"><br>
+          <h3 class="price">Price: R{{ pic.artprice }}</h3><br>
+        </ion-card-content>
+        <div class="align">
+          <ion-button expand="outline" (click)="addToPrintPicArray(pic.artid)">
+          <ion-icon name="add" color="primary" ></ion-icon>
+        </ion-button>
+
+        </div><br>
+      </ion-card>
+
+      <ion-infinite-scroll therehold='100px' (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content 
+          color="primary"
+          loadingSpinner="bubbles" 
+          loadingText="Loading more Posts...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+  </div>
+
+</ion-content>

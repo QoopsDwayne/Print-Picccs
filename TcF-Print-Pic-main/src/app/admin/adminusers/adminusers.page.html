@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button> Manage Users here
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="mask" *ngIf="isUser === true">  
+    <div class="the-dismiss" (click)="hideUser()">
+      <ion-icon id="edit-icon2" src="../../assets/images/User_Avatar.png" alt=""></ion-icon>
+    </div>
+    <div class="profile-info" *ngIf="isProfile === true">
+      <div class="three-circles">
+        <div id="color-one"></div>
+        <div id="color-two"></div>
+        <div id="color-three"></div>
+      </div>
+      <div class="profile-div">
+        <div class="circle-picture">
+          <img *ngIf="!userImage" src="../../assets/images/User_Avatar.png" alt=""> 
+          <img  *ngIf="userImage" src="{{userImage}}" alt="">
+        </div>
+      </div>
+      <div *ngIf="!registerForm">
+      <div class="the-info">
+        <p><b>{{ username }}</b></p>          
+      </div>
+      <div class="user-phone">
+        <p>{{ contact }}</p>
+      </div>
+      <div class="user-role">
+        <p><b>{{ tcfcoin }}</b></p>
+      </div>
+
+      <ion-fab>
+        <ion-fab-button id="the-fab" (click)="showRegisterForm()" ><ion-icon name="add"></ion-icon></ion-fab-button>
+      </ion-fab>
+
+      <div class="delete">
+        <ion-icon name="trash" (click)='deleteuser(id2)'></ion-icon>
+      </div>
+    </div>
+      <!-- end of user-info pop-over -->
+
+    </div>
+
+    <!-- end of add-user pop-over -->
+  </div>
+  
+    <!-- End of View-user0-profile Pop-over -->
+<div class="background-Logo">
+  <img src="../../assets/images/User_Avatar.png" alt="">
+</div>
+
+  <div class="cont-container" >
+
+    <div padding class="left" >
+      <div class="Searhcer">
+        <div class="results">
+          <div class='count' *ngIf="user.length > 0">
+          </div>
+        </div>
+        <!-- <ion-searchbar name="search" placeholder="Search by Card No" (ionInput)="getItems($event)"></ion-searchbar> -->
+      </div>
+
+      <div padding class="profile" *ngFor="let myprofiles  of user; let z = index" (click)='AddUser(myprofiles.userid)' (click)="showUser()">
+        <div class="names">
+           
+          <div *ngIf="user.length > 0">
+              <img class="image" *ngIf="!myprofiles.image" src="../../assets/images/User_Avatar.png" alt=""> 
+              <img class="image" *ngIf="myprofiles.image" src="{{myprofiles.image}}" alt="">
+            <b>
+            <p>{{ myprofiles.username }} {{ myprofiles.surnamez }}</p> 
+            <p>{{ myprofiles.contact }}</p>
+            <p>{{ myprofiles.address }}</p>
+            </b>
+          </div>
+
+          <div *ngIf="user.length == 0">
+              <img class="image" *ngIf="!myprofiles.image" src="../../assets/images/User_Avatar.png" alt=""> 
+              <img class="image" *ngIf="myprofiles.image" src="{{myprofiles.image}}" alt="">
+
+            <p>{{ myprofiles.username }} {{ myprofiles.surnamez }}</p> 
+            <p>{{ myprofiles.contact }}</p>
+            <p>{{ myprofiles.address }}</p>
+          </div>
+
+        </div>
+        </div>
+
+    </div>
+
+    <div class="right" *ngIf="!registerForm" >
+      <div class="pic" padding >
+     <ion-avatar>
+      <img *ngIf="!userImage2" src="../../assets/images/User_Avatar.png" alt=""> 
+      <img  *ngIf="userImage2" src="{{userImage2}}" tappable (click)="openPreview(userImage2)" alt="">
+      </ion-avatar>
+      </div>
+      <p id="borderb"></p>
+      <div padding class="info" >
+        <h4>{{ username2 }}</h4>
+        <h4>{{ surnamez2 }}</h4>
+        <h4>{{ contact2 }}</h4>
+        <h4>{{ address2 }}</h4>
+        <h4>{{ emails2 }}</h4>
+        <h4>{{ tcfcoin2 }}</h4>
+        
+        <!-- <h4>Account Blocked : {{ suspendStatus }}</h4> -->
+        
+        <ion-segment value="no">
+          <ion-segment-button value="no">
+            <ion-label>No</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="yes">
+            <ion-label>Yes</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        <button (click)='deleteuser(id2)'>delete user</button>
+
+        <ion-fab>
+          <ion-fab-button  (click)="showRegisterForm()" ><ion-icon name="add"></ion-icon></ion-fab-button>
+        </ion-fab>
+
+      </div>
+
+      </div>
+
+  </div>
+  
+</ion-content>

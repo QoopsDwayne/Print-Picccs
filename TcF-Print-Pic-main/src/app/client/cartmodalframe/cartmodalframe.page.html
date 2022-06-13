@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-buttons (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Checkout {{ name }} {{ surname }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- old code -->
+  <!-- <div class="ion-padding"> -->
+  
+    <!-- <ion-card>
+      <div class="navbar" align="center">
+        <br>
+        <label class="label">
+            Select Pics {{ picNumber }}
+        </label><br>
+        <label class="label">
+          Select frame {{ picNumber }}
+      </label><br>
+        <label class="label">
+            Dilivery Price: R30
+        </label><br>
+        <label class="label">
+            Total Price R{{ price }}
+        </label><br>
+        <br>
+    </div>
+    </ion-card>
+  
+    <ion-list>
+      <ion-card *ngFor="let order of data; let i = index">
+        <ion-item >
+            <ion-avatar slot="start">
+              <img [src]= "order.frameimage">
+            </ion-avatar> -->
+      
+            <!-- <ion-avatar slot="start">
+                <ion-icon color="danger" name="trash" (click)="deletePic(i)"></ion-icon>
+              </ion-avatar> -->
+      
+            <!-- <ion-label>
+              <h1 style="color: rgb(12, 155, 250)">{{ order.framename}}</h1><br>
+              <span style="color: rgb(12, 155, 250); font-size: 1rem; margin: 5px;">Price: R{{ order.frameprice }}</span><br>
+            </ion-label>
+          </ion-item>
+        </ion-card>
+
+        <ion-card *ngFor="let order of data; let i = index">
+          <ion-item >
+              <ion-avatar slot="end">
+                <img [src]= "order.pic">
+              </ion-avatar> -->
+        
+              <!-- <ion-avatar slot="end">
+                  <ion-icon color="danger" name="trash" (click)="deletePic(i)"></ion-icon>
+                </ion-avatar> -->
+        
+              <!-- <ion-label>
+                <h1 style="color: #3880ff">{{ order.comment}}</h1>
+                <span style="color: #3880ff; font-size: 1rem; margin: 5px;">Price: R{{ order.price }}</span><br>
+              </ion-label>
+            </ion-item>
+          </ion-card> -->
+  
+    <!-- Textarea that clears the value on edit -->
+    <!-- <ion-item>
+      <ion-label color="primary">Dilivery Notes </ion-label>
+      <form  [formGroup]="RegisterForm">
+          <ion-textarea color="primary" clearOnEdit="true" [(ngModel)]="DiliveyNote" formControlName="DiliveyNote"></ion-textarea>
+      </form>
+    </ion-item><br>
+
+    <form [formGroup]="directionForm">
+      <ion-item [formGroup]="RegisterForm">
+        <input class="input" #autoCompleteInput formControlName="placeName" />
+      </ion-item>
+    </form>
+    <ion-item>
+      <div #mapElement class="map"></div>
+    </ion-item>
+  
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span>
+    </div> -->
+    
+  <!-- </div> -->
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="success">
+    <ion-button expand="full" [disabled]="!RegisterForm.valid" fill="clear" color="light">
+      Place Order
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

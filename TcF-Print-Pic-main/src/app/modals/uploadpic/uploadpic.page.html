@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Upload Picture</ion-title>
+
+    <ion-buttons slot="end" (click)="dismiss()">
+      <ion-icon color="primary" name="close"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card align="center">
+    <ion-card-content>
+      <ion-skeleton-text animated style="width: 500px;height: 200px;border-radius: 8px; align-content: center;" *ngIf="!pic"></ion-skeleton-text>
+      <img *ngIf="pic" src="{{pic}}" (ionImgDidLoad)="(pic = true)" alt="">
+    </ion-card-content>
+
+      <label for="disapear">
+        <ion-icon color="primary" slot="end" name="camera">
+          <input id="disapear" class="image-upload" type="file" multiple="false" accept="image/*" (change)="changeListener2($event)" align="center">
+        </ion-icon>
+      </label>
+    <br>
+      <ion-progress-bar value="{{ uploadingprogress/100 }}"></ion-progress-bar>
+    <br>
+  </ion-card>
+
+  <ion-card>
+      <ion-item>
+          <ion-label position="floating" color="primary">Pic Name</ion-label>
+          <ion-input [(ngModel)]="name" color="primary"></ion-input>
+      </ion-item>
+
+    <div text-wrap align="center">
+      <div class="h3">Note!!!</div><i>
+      <div class="p">Now Upload the pictures you want to save. then you may print the one you like the most.</div>
+    </i>
+    </div><br>
+    <ion-button expand="block" fill="outline" color="primary" (click)="upload()" clear>Save</ion-button><br>
+  </ion-card>
+
+</ion-content>

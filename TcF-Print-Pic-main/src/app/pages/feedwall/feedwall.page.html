@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="primary">Feedwall</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngIf="feedwall.length === 0" style="align-content: center;">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated style="width: 50px;height: 50px;border-radius: 50px;"></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label color="primary">
+        <ion-skeleton-text animated style="width:100px; border-radius: 8px;"></ion-skeleton-text><br>
+        <ion-skeleton-text animated style="width:150px; border-radius: 8px;"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+
+    <ion-card-content class="post-list-content">
+      <ion-skeleton-text animated style="width: 300px;height: 400px;border-radius: 8px;"></ion-skeleton-text><br>
+      <ion-skeleton-text animated style="width:200px; border-radius: 8px;"></ion-skeleton-text><br>
+      <ion-skeleton-text animated style="width:100px; border-radius: 8px;"></ion-skeleton-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let pic of feedwall | slice:0:10" class="align">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated style="width: 300px;height: 400px;border-radius: 8px;" *ngIf="!pic.image"></ion-skeleton-text>
+        <img src="{{ pic.image }}" (ionImgDidLoad)="(pic.image = true)" tappable (click)="openPreview(pic.image)">
+      </ion-avatar>
+      <ion-label color="primary">
+        {{ pic.name }} {{ pic.surname }}
+        <p class="p">{{ pic.date }}</p>
+        <!-- <p class="p">{{ datezz }}</p> -->
+      </ion-label>
+    </ion-item>
+
+    <ion-card-content class="post-list-content" class="align">
+      <img src="{{ pic.pic }}" tappable (click)="openPreview(pic.pic)"><br>
+      <ion-card-title class="align" color="primary">"{{ pic.comment }}"</ion-card-title>
+    </ion-card-content>
+
+    <ion-item lines="none" class="ion-no-padding" style="margin-left: 10px;">
+      <ion-buttons slot="start">
+        <!-- <ion-button color="medium" tappable (click)="getLikeId(pic.id)">
+          <ion-icon color="primary" slot="start" [name]="heartType"></ion-icon>
+        </ion-button> -->
+        <!-- <ion-button color="medium" tappable (click)="addLikes(pic.id)">
+          <ion-icon color="primary" slot="start" name="heart-outline"></ion-icon>
+          <small class="p">{{ pic.likes }}</small>
+        </ion-button> -->
+        <ion-button color="medium" [routerLink]="['./feedchat', pic.feedid]">
+          <ion-icon color="primary" slot="start" name="chatbox-outline"></ion-icon>
+          <small class="p">{{ pic.comments }}</small>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card>
+
+    <ion-infinite-scroll therehold='100px' (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content 
+        color="primary"
+        loadingSpinner="bubbles" 
+        loadingText="Loading more Posts...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>

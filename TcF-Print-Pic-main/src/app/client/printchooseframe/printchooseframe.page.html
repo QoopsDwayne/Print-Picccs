@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back" color="primary" vertical="end" slot="start" style="margin-left: 10px;" [routerLink]="['./../tabs/profilez']"></ion-icon>
+    <ion-title color="primary">Choose Frame</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-box">
+    <ion-card>
+      <ion-card-header class="align">
+        <ion-card-title color="primary">Available Frames: {{ frameArrayNo }}</ion-card-title>
+      </ion-card-header>
+
+    </ion-card>
+
+    <ion-card *ngIf="frameArray.length === 0">
+      <ion-card-header class="align">
+        <ion-card-title color="primary">No Frames Yet</ion-card-title>
+      </ion-card-header>
+
+    </ion-card>
+
+    <ion-card *ngFor="let pic of frameArray; let i = index" class="align"> 
+      <ion-card-header>
+        <ion-card-subtitle color="primary" class="align">Name: {{ pic.framename }}</ion-card-subtitle>
+        <ion-card-title color="primary" class="align">Size: {{ pic.framesize }}</ion-card-title>
+        <!-- <ion-card-title color="primary" class="align">{{ pic.frameprice }}</ion-card-title> -->
+      </ion-card-header>
+    
+      <ion-card-content class="align" color="primary">
+        <img src="{{ pic.frameimage }}"><br>
+        <h3 class="price">Price: R{{ pic.frameprice }}</h3><br>
+      </ion-card-content>
+      <div class="align">
+        <ion-button expand="outline" [routerLink]="['/printframe', pic.frameid]">
+        <ion-icon name="add" color="primary" ></ion-icon>
+      </ion-button>
+
+      </div><br>
+    </ion-card>
+
+  </div>
+
+  <ion-infinite-scroll therehold='100px' (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content 
+      color="primary"
+      loadingSpinner="bubbles" 
+      loadingText="Loading more Posts...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

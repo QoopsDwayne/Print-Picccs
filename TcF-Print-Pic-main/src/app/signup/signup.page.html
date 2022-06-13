@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon color="primary" name="arrow-back" vertical="end" slot="start" style="margin-left: 10px;" [routerLink]="['/login']"></ion-icon>
+    <ion-title class="aligned" color="primary"><b>Register</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="login-box">
+
+    <div id="user-profile" class="align">
+      <div id="user-pic" class="align">
+          <img *ngIf="!image" src="../../assets/images/User_Avatar.png" alt=""> 
+          <img *ngIf="image" src="{{image}}" alt="">
+      </div>
+    </div>
+    <br>
+    <div>
+      <div align="center">
+        <label for="disapear">
+          <ion-icon color="primary" slot="end" name="camera">
+            <input id="disapear" class="image-upload" type="file" multiple="false" accept="image/*" (change)="changeListener($event)" align="center">
+          </ion-icon>
+        </label>
+      </div>
+    <br>
+      <ion-progress-bar value="{{ uploadingprogress/100 }}"></ion-progress-bar>
+    </div>
+    <br>
+
+      <form [formGroup]="RegisterForm" style="margin-left: 10px;margin-right: 10px;">
+          <ion-item>
+              <ion-label position="floating" color="primary">Name</ion-label>
+              <ion-input color="primary" formControlName="name" [(ngModel)]="name"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label color="primary" position="floating">Surname</ion-label>
+              <ion-input color="primary" formControlName="surname" [(ngModel)]="surname"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary" position="floating">Contact</ion-label>
+            <ion-input color="primary" formControlName="contact" [(ngModel)]="contact" maxlength="10" (keyup)="getPhoneInput($event)"></ion-input>
+        </ion-item>
+        <ion-item lines="inset" color="none">
+          <ion-label color="primary" position="floating">Email Address</ion-label>
+          <ion-input color="primary" formControlName="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+        <!-- <ion-item >
+          <ion-label color="primary" position="floating">Address</ion-label>
+          <ion-textarea color="primary" maxRows='3' [(ngModel)]="address" formControlName="address" cols='5' placeholder="Enter Your Address information here..."></ion-textarea>
+      </ion-item> -->
+          <ion-item lines="inset" color="none">
+              <ion-label color="primary" position="floating">Password</ion-label>
+              <ion-input color="primary" formControlName="password" [type]="passwordType" name="password" clearOnEdit="false" [(ngModel)]="password"></ion-input>
+              <ion-icon [name]="passwordIcon" color="primary" slot="end" (click)='hideShowPassword()'></ion-icon>
+          </ion-item>
+          <ion-item lines="inset" color="none">
+              <ion-label color="primary" position="floating">Confirm Password</ion-label>
+              <ion-input color="primary" formControlName="confirmpassword" [type]="passwordType" name="password" clearOnEdit="false" [(ngModel)]="confirmpassword"></ion-input>
+              <ion-icon [name]="passwordIcon" color="primary" slot="end" (click)='hideShowPassword()'></ion-icon>
+          </ion-item>
+        </form><br>
+          <!-- <ion-item>
+            <span class="align">
+              <ion-button value="large" expand="block" color="primary" (click)="signup()" [disabled]="!RegisterForm.valid">Next</ion-button>
+            </span>
+          </ion-item> -->
+    </div>
+
+      <ion-button expand="block" fill="outline" color="primary" (click)="signup()" [disabled]="!RegisterForm.valid" clear>Save</ion-button><br>
+
+
+</ion-content>

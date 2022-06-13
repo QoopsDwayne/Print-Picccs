@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="primary">
+      {{ name }} {{ surname }} Profile
+    </ion-title>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button color="medium" tappable (click)="uploadpic()">
+        <ion-icon color="primary" slot="start" name="image-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="login-box">
+    <ion-card *ngIf="userPics.length === 0" style="align-content: center;">
+      <!-- <ion-item lines="none">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated style="width: 50px;height: 50px;border-radius: 50px;"></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label color="primary">
+          <ion-skeleton-text animated style="width:100px; border-radius: 8px;"></ion-skeleton-text><br>
+          <ion-skeleton-text animated style="width:150px; border-radius: 8px;"></ion-skeleton-text>
+        </ion-label>
+      </ion-item> -->
+  
+      <ion-card-content class="post-list-content">
+        <ion-skeleton-text animated style="width: 250px;height: 400px;border-radius: 8px;"></ion-skeleton-text><br>
+        <ion-skeleton-text animated style="width:200px; border-radius: 8px;"></ion-skeleton-text><br>
+        <ion-skeleton-text animated style="width:100px; border-radius: 8px;"></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
+
+
+    <!-- <ion-card *ngIf="userPics.length === 0">
+      <ion-card-header class="align">
+        <ion-card-title color="primary">No Picccs Yet</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="align">
+        <div>
+          <img src="./../../assets/images/no imgae.png" >
+        </div>
+      </ion-card-content>
+    </ion-card> -->
+
+    <ion-card *ngFor="let pic of userPics"> 
+      <ion-card-header>
+        <ion-card-subtitle class="align" color="primary">{{ pic.date }}</ion-card-subtitle>
+        <ion-card-title class="align" color="primary">{{ pic.comment }}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content class="align" color="primary">
+        <img src="{{ pic.pic }}" tappable (click)="openPreview(pic.pic)"><br>
+      </ion-card-content>
+      <div class="align">
+        <ion-button expand="outline" (click)="presentAlertDeletePics(pic.id)">
+        <ion-icon name="trash" color="danger" ></ion-icon>
+      </ion-button>
+      </div>
+      <div class="align">
+        <ion-button expand="outline" (click)="presentAlertSharePic(pic.id)">
+        <ion-icon name="share-social-outline" color="primary" ></ion-icon>
+      </ion-button>
+      </div>
+      <br>
+    </ion-card>
+
+    <ion-infinite-scroll therehold='100px' (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content 
+        color="primary"
+        loadingSpinner="bubbles" 
+        loadingText="Loading more Piccs...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </div>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary" tappable (click)="uploadpic()" >
+        <ion-icon name="image-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

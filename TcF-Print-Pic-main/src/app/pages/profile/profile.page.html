@@ -1,0 +1,59 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back" color="primary" vertical="end" slot="start" style="margin-left: 10px;" [routerLink]="['/home']"></ion-icon>
+    <ion-title class="aligned" color="primary"><b>Profile</b></ion-title>
+ </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-box">
+
+    <div id="user-profile" class="align">
+      <div id="user-pic" class="align">
+          <img *ngIf="!profile.image" src="../../assets/images/User_Avatar.png" alt=""> 
+          <img *ngIf="profile.image" src="{{profile.image}}" alt="">
+      </div>
+    </div><br>
+
+    <div align="center">
+      <label for="disapear" align="center">
+        <ion-icon color="primary" slot="end" name="camera">
+          <input id="disapear" class="image-upload" type="file" multiple="false" accept="image/*" (change)="changeListener2($event)" align="center">
+        </ion-icon>
+      </label>
+    </div><br>
+    <div align="center">
+      <ion-progress-bar value="{{ uploadingprogress/100 }}"></ion-progress-bar>
+    </div><br>
+      <br>
+
+    <br>
+
+    <ion-item>
+      <ion-label color="primary" position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="profile.name" color="primary"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Surname</ion-label>
+      <ion-input [(ngModel)]="profile.surname" color="primary"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Your 10s</ion-label>
+      <ion-input  [(ngModel)]="profile.number" maxlength="10" (keyup)="getPhoneInput($event)" color="primary"></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label color="primary" position="floating">Address</ion-label>
+      <ion-textarea maxRows='3' [(ngModel)]="profile.address" cols='5' placeholder="Enter Your Address information here..." color="primary"></ion-textarea>
+    </ion-item><br>
+    <!-- <ion-item>
+      <span class="align">
+        <ion-button value="large" expand="block" color="primary" (click)="signup()" [disabled]="!RegisterForm.valid">Next</ion-button>
+      </span>
+    </ion-item> -->
+
+    <ion-button expand="block" fill="outline" color="primary" (click)="users()" clear>Save</ion-button>
+
+  </div>
+
+</ion-content>
